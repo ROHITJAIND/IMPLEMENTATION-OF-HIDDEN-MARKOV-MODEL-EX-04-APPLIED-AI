@@ -3,7 +3,7 @@
 
 <table>
 <tr>
-<td width=80%>
+<td width=70%>
   
 Construct a Python code to find the sequence of hidden states by the known sequence of observances using Hidden Markov Model. Consider two hidden states Sunny and Rainy with observable states,happy and sad.
 </td> 
@@ -32,11 +32,11 @@ import numpy as np
 ```
 ##### Define the transition matrix
 ```Python
-transition_matrix =np.array([[0.7,0.3],[0.4,0.6]])
+transition=np.array([[0.7,0.3],[0.4,0.6]])
 ```
 ##### Define the emission matrix
 ```Python
-emission_matrix =np.array ([[0.1,0.9],[0.8,0.2]])
+emission=np.array ([[0.1,0.9],[0.8,0.2]])
 ```
 ##### Define the initial probabilities
 ```Python
@@ -53,13 +53,13 @@ alpha = np. zeros ((len(observed_sequence) ,len (initial_probabilities) ) )
 ```
 ##### Calculate the first row of the alpha matrix
 ```Python
-alpha [0,:] = initial_probabilities *emission_matrix[:, observed_sequence [0]]
+alpha [0,:] = initial_probabilities*emission[:,observed_sequence [0]]
 ```
 ##### Loop through the rest of the observed sequence and calculate the rest of the alpha matrix
 ```Python
 for t in range (1, len (observed_sequence) ) :
   for j in range (len (initial_probabilities) ) :
-    alpha[t,j]= emission_matrix [j,observed_sequence[t]] *np.sum(alpha[t-1:]*transition_matrix[:, j])
+    alpha[t,j]=emission[j,observed_sequence[t]]*np.sum(alpha[t-1:]*transition[:, j])
 ```
 <br>
 <br>
